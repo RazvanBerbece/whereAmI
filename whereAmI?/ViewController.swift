@@ -28,7 +28,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     /* Current location / testing objects as GeofenceLocation */
     private var currentLocation = GeofenceLocation()
-    let newGeofenceLocation = GeofenceLocation(coords: CLLocation(latitude: 51.44, longitude: -0.23).coordinate, name: "Home")
+    let newGeofenceLocation = GeofenceLocation(coords: CLLocation(latitude: 51.447, longitude: -0.238).coordinate, name: "Home")
+    var appStarted : Bool = false
     
     /* Called at runtime, manages evrything related to the current location */
     /** Listening for locations and printing them as the current one changes */
@@ -52,36 +53,46 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.currentLocation.setCoords(coords: locValue)
                     self.currentLocation.setName(name: result)
                     self.currentLocation.setRadius(radius: 10)
+                    
+                    /* Checking if at start-up, user is already in a location */
+                    if !self.appStarted {
+                        for location in self.locationManager.monitoredRegions {
+                            let circularArea = location as! CLCircularRegion
+                            if distanceToLocation(destinationGeo: GeofenceLocation(coords: circularArea.center, name: circularArea.identifier), currentLocationGeo: self.currentLocation) < 100 {
+                                self.textToSpeechManager.toSpeech(text: location.identifier, delay: 5)
+                                DispatchQueue.main.async {
+                                    self.labelNearestLocation.text = location.identifier
+                                }
+                            }
+                        }
+                        self.appStarted = true
+                    }
+                    
                     /* Setting the current city label */
                     self.labelCurrentCity.text = "\(result as String)"
                 }
             }
         })
-        
-        print("Current location : " + String(describing: self.currentLocation.getCoordinates()))
-        print("Geofence : " + String(describing : self.newGeofenceLocation.getCoordinates()))
-        print("Distance : " + String(describing: geofenceManager.distanceToLocation(destinationGeo: newGeofenceLocation, currentLocationGeo: self.currentLocation)))
-        if geofenceManager.distanceToLocation(destinationGeo: self.newGeofenceLocation, currentLocationGeo: self.currentLocation) < 1100 {
-            print("User in proximity of \(self.newGeofenceLocation.getName())")
-            self.labelNearestLocation.text = self.newGeofenceLocation.getName()
-            
-            if self.locationQueue.isEmpty() {
-                /* Adding current geofencing location to the queue */
-                self.locationQueue.append(location: newGeofenceLocation.getName())
-                textToSpeechManager.toSpeech(text: newGeofenceLocation.getName())
-            }
-        }
-        else {
-            self.locationQueue.delete()
-        }
+    }
+    
+    /* User entered CLRegion Area */
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        self.textToSpeechManager.toSpeech(text: "You have \(region.identifier) in your proximity.", delay: 5)
+        self.labelNearestLocation.text = region.identifier
+    }
+    
+    /* User exited CLRegion Area */
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        self.labelNearestLocation.text = "Calculating nearest point of interest ..."
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.textToSpeechManager.toSpeech(text: "Welcome!", delay: 5)
         
+        /* Adding one location to be monitored for geofencing */
         geofenceManager.startMonitoring(location: newGeofenceLocation, locationManager: self.locationManager)
-        
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -95,7 +106,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        
     }
     
 }

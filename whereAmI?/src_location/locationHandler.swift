@@ -46,9 +46,10 @@ public class locationAnalysis {
                     }
                 }
                 else {
-                 // An error occurred during geocoding.
+                    // An error occurred during geocoding.
                     completion("")
                 }
         })
     }
+    
 }

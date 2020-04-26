@@ -9,12 +9,14 @@
 import Foundation
 import AVFoundation
 
-public class TextToSpeechManager {
+public class TextToSpeechManager { /** This manages the TTS processes in the app */
     
-    public func toSpeech(text: String) {
+    public func toSpeech(text: String, delay: Double) {
         
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "ro-RO")
+        utterance.voice = AVSpeechSynthesisVoice(identifier: "Karen")
+        utterance.postUtteranceDelay = TimeInterval(delay) // ?
+        // utterance.voice = AVSpeechSynthesisVoice(language: "ro-RO")
         
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)

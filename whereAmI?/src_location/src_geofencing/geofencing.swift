@@ -10,6 +10,13 @@ import Foundation
 import CoreLocation
 import MapKit
 
+/* Calculates the distance between two GeofenceLocations and returns a Double */
+public func distanceToLocation(destinationGeo: GeofenceLocation, currentLocationGeo: GeofenceLocation) -> Double {
+    let destination = CLLocation(latitude: destinationGeo.getCoordinates().latitude, longitude: destinationGeo.getCoordinates().longitude)
+    let current = CLLocation(latitude: currentLocationGeo.getCoordinates().latitude, longitude: currentLocationGeo.getCoordinates().longitude)
+    return destination.distance(from: current)
+}
+
 public class LocationList { /** Will have stack behaviour */
     
     private var locationsQueue : [String]
@@ -82,6 +89,8 @@ public class GeofencingManager { /** This manages the addition or processing of 
     public func addRegion(with location: GeofenceLocation) -> CLCircularRegion {
         print("Creating region ...")
         let region = CLCircularRegion(center: location.getCoordinates(), radius: location.getRadius(), identifier: location.getName())
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
         return region
     }
     
@@ -89,12 +98,6 @@ public class GeofencingManager { /** This manages the addition or processing of 
         let fenceRegion = addRegion(with: location)
         print("Monitoring region ...")
         locationManager.startMonitoring(for: fenceRegion)
-    }
-    
-    public func distanceToLocation(destinationGeo: GeofenceLocation, currentLocationGeo: GeofenceLocation) -> Double {
-        let destination = CLLocation(latitude: destinationGeo.getCoordinates().latitude, longitude: destinationGeo.getCoordinates().longitude)
-        let current = CLLocation(latitude: currentLocationGeo.getCoordinates().latitude, longitude: currentLocationGeo.getCoordinates().longitude)
-        return destination.distance(from: current)
     }
     
 }
