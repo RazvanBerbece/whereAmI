@@ -1,16 +1,20 @@
 PODS:
   - FontAwesome.swift (1.9.0)
+  - Starscream (4.0.3)
 
 DEPENDENCIES:
   - FontAwesome.swift
+  - Starscream (~> 4.0.0)
 
 SPEC REPOS:
   trunk:
     - FontAwesome.swift
+    - Starscream
 
 SPEC CHECKSUMS:
   FontAwesome.swift: a403b88cec950511745ba8f2decd1b6a07346d13
+  Starscream: ef06f0961fff0880bca0604416d61141e4faca67
 
-PODFILE CHECKSUM: d12a8b19d6a3391c30cd263046178f2cac953e07
+PODFILE CHECKSUM: 05ba90f6b46e919af5abe4110b887049a2035a9c
 
 COCOAPODS: 1.9.0.beta.2
