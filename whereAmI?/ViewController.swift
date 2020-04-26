@@ -11,34 +11,41 @@ import MapKit
 import CoreLocation
 import FontAwesome_swift
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    var appStarted : Bool = false
     
     /* Managers Initialisations */
     private let locationManager = CLLocationManager()
     private var locationAnalysisClass = locationAnalysis()
     private var geofenceManager = GeofencingManager()
     private var locationQueue = LocationList()
-    private let textToSpeechManager = TextToSpeechManager()
+    private let textToSpeechManager = Speaker()
     
     /* UIKit Components Variable Initialisation */
     @IBOutlet weak var labelLocationLong: UILabel!
     @IBOutlet weak var labelLocationLat: UILabel!
     @IBOutlet weak var labelCurrentCity: UILabel!
     @IBOutlet weak var labelNearestLocation: UILabel!
+    @IBOutlet weak var headerIcon: UILabel!
+    
+    @IBOutlet weak var viewMap: MKMapView!
     
     /* Current location / testing objects as GeofenceLocation */
     private var currentLocation = GeofenceLocation()
-    let newGeofenceLocation = GeofenceLocation(coords: CLLocation(latitude: 51.447, longitude: -0.238).coordinate, name: "Home")
-    var appStarted : Bool = false
+    
+    /* Other Variables */
+    let newGeofenceLocation = GeofenceLocation(coords: CLLocation(latitude: 51.447342409128, longitude: -0.238871354418).coordinate, name: "Home")
+    let newGeofenceLocation2 = GeofenceLocation(coords: CLLocation(latitude: 51.447375147473, longitude: -0.238789905617).coordinate, name: "Garden")
     
     /* Called at runtime, manages evrything related to the current location */
     /** Listening for locations and printing them as the current one changes */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
-        /* Updating labels with current coordinates */
-        labelLocationLong.text = "\(locValue.longitude)"
-        labelLocationLat.text = "\(locValue.latitude)"
+        /* Updating labels with current coordinates (12 decimal places) */
+        labelLocationLong.text = String(format: "%.12f", locValue.longitude)
+        labelLocationLat.text = String(format: "%.12f", locValue.latitude)
         
         /* Setting class variables for the Analysis class */
         self.locationAnalysisClass.setLat(lat: locValue.latitude)
@@ -54,22 +61,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.currentLocation.setName(name: result)
                     self.currentLocation.setRadius(radius: 10)
                     
-                    /* Checking if at start-up, user is already in a location */
+                    /* Setting the current city label */
+                    self.labelCurrentCity.text = "\(result as String)"
                     if !self.appStarted {
+                        self.textToSpeechManager.toSpeech("You are in \(result)")
+                        /* Checking if at start-up, user is already in a location */
                         for location in self.locationManager.monitoredRegions {
                             let circularArea = location as! CLCircularRegion
-                            if distanceToLocation(destinationGeo: GeofenceLocation(coords: circularArea.center, name: circularArea.identifier), currentLocationGeo: self.currentLocation) < 100 {
-                                self.textToSpeechManager.toSpeech(text: location.identifier, delay: 5)
+                            if distanceToLocation(destinationGeo: GeofenceLocation(coords: circularArea.center, name: circularArea.identifier), currentLocationGeo: self.currentLocation) < 10 {
+                                self.textToSpeechManager.toSpeech(location.identifier)
                                 DispatchQueue.main.async {
                                     self.labelNearestLocation.text = location.identifier
                                 }
                             }
+                            break
                         }
                         self.appStarted = true
                     }
-                    
-                    /* Setting the current city label */
-                    self.labelCurrentCity.text = "\(result as String)"
                 }
             }
         })
@@ -77,27 +85,58 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     /* User entered CLRegion Area */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        self.textToSpeechManager.toSpeech(text: "You have \(region.identifier) in your proximity.", delay: 5)
+        print("Entered a region.")
+        self.textToSpeechManager.toSpeech("You have \(region.identifier) in your proximity")
         self.labelNearestLocation.text = region.identifier
     }
     
     /* User exited CLRegion Area */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("Exited a region.")
+        self.textToSpeechManager.toSpeech("You have left \(region.identifier) in your proximity")
         self.labelNearestLocation.text = "Calculating nearest point of interest ..."
     }
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("The monitored regions are: \(manager.monitoredRegions)")
+    }
+    
+    /* Overlaying Methodology */
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        var circleRenderer = MKCircleRenderer()
+        if let overlay = overlay as? MKCircle {
+            circleRenderer = MKCircleRenderer(circle: overlay)
+            circleRenderer.fillColor = UIColor.red
+            circleRenderer.alpha = 0.1
+        }
+        return circleRenderer
+    }
+    
+    func addRadiusCircle(location: CLLocation, radius: Double){
+        self.viewMap.delegate = self
+        var circle = MKCircle(center: location.coordinate, radius: radius as CLLocationDistance)
+        self.viewMap.addOverlay(circle)
+    }
+    /* ----- END OF OVERLAYING METHODS ----- */
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.textToSpeechManager.toSpeech(text: "Welcome!", delay: 5)
+        self.textToSpeechManager.toSpeech("Welcome!")
+        self.locationManager.startMonitoring(for: self.geofenceManager.addRegion(with: self.newGeofenceLocation))
+        
+        self.headerIcon.font = UIFont.fontAwesome(ofSize: 25, style: .brands)
+        self.headerIcon.text = String.fontAwesomeIcon(name: .apple)
         
         /* Adding one location to be monitored for geofencing */
         geofenceManager.startMonitoring(location: newGeofenceLocation, locationManager: self.locationManager)
+        geofenceManager.startMonitoring(location: newGeofenceLocation2, locationManager: self.locationManager)
+        self.addRadiusCircle(location: CLLocation(latitude: newGeofenceLocation.getCoordinates().latitude, longitude: newGeofenceLocation.getCoordinates().longitude), radius: 3)
+        self.addRadiusCircle(location: CLLocation(latitude: newGeofenceLocation2.getCoordinates().latitude, longitude: newGeofenceLocation2.getCoordinates().longitude), radius: 5)
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
         /* Selecting the desired accuracy of the location getter */
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         // Init CLLocationManager
@@ -106,7 +145,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        //Zoom to user location
+        if let userLocation = locationManager.location?.coordinate {
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+            viewMap.setRegion(viewRegion, animated: false)
+        }
+        
     }
     
 }
-

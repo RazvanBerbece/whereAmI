@@ -9,18 +9,22 @@
 import Foundation
 import AVFoundation
 
-public class TextToSpeechManager { /** This manages the TTS processes in the app */
+class Speaker: NSObject {
+    let synth = AVSpeechSynthesizer()
     
-    public func toSpeech(text: String, delay: Double) {
-        
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "Karen")
-        utterance.postUtteranceDelay = TimeInterval(delay) // ?
-        // utterance.voice = AVSpeechSynthesisVoice(language: "ro-RO")
-        
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-        
+    override init() {
+        super.init()
+        synth.delegate = self
     }
     
+    func toSpeech(_ string: String) {
+        let utterance = AVSpeechUtterance(string: string)
+        synth.speak(utterance)
+    }
+}
+
+extension Speaker: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        print("Finished TTS toSpeech().")
+    }
 }
