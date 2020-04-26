@@ -68,7 +68,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             if self.locationQueue.isEmpty() {
                 /* Adding current geofencing location to the queue */
                 self.locationQueue.append(location: newGeofenceLocation.getName())
-                textToSpeechManager.toSpeech(text: "Bogdanel sa ma sugi de pula")
+                textToSpeechManager.toSpeech(text: newGeofenceLocation.getName())
             }
         }
         else {
@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         geofenceManager.startMonitoring(location: newGeofenceLocation, locationManager: self.locationManager)
-
+        
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()

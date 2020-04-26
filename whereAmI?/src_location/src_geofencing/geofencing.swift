@@ -12,24 +12,24 @@ import MapKit
 
 public class LocationList { /** Will have stack behaviour */
     
-    private var locations : [String]
+    private var locationsQueue : [String]
     
     init() {
-        self.locations = []
+        self.locationsQueue = []
     }
     
     public func append(location: String) {
-        self.locations.append(location)
+        self.locationsQueue.append(location)
     }
     
     public func delete() {
-        if self.locations.indices.contains(0) {
-            self.locations.remove(at: 0)
+        if self.locationsQueue.indices.contains(0) {
+            self.locationsQueue.remove(at: 0)
         }
     }
     
     public func isEmpty() -> Bool {
-        return self.locations.isEmpty
+        return self.locationsQueue.isEmpty
     }
     
 }
