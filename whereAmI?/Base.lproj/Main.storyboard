@@ -95,13 +95,27 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SN-wt-0sZ">
                                 <rect key="frame" x="20" y="487" width="374" height="299"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monitored Regions : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40z-C1-eeb">
+                                <rect key="frame" x="20" y="794" width="158" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4S-xS-ES3">
+                                <rect key="frame" x="184" y="794" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="X4S-xS-ES3" firstAttribute="leading" secondItem="40z-C1-eeb" secondAttribute="trailing" constant="6" id="0m0-0k-LsQ"/>
                             <constraint firstItem="jdm-Pm-CoO" firstAttribute="leading" secondItem="F9H-Rn-fy7" secondAttribute="leading" id="14i-Sd-tae"/>
                             <constraint firstItem="37r-Ad-0Oh" firstAttribute="centerX" secondItem="1SN-wt-0sZ" secondAttribute="centerX" id="2Kg-W4-VVl"/>
                             <constraint firstItem="aRl-Y6-5bE" firstAttribute="centerY" secondItem="bxB-eu-T0P" secondAttribute="centerY" id="2Ta-VX-TUM"/>
                             <constraint firstItem="aRl-Y6-5bE" firstAttribute="leading" secondItem="bxB-eu-T0P" secondAttribute="trailing" constant="8" id="4a0-TG-JgF"/>
+                            <constraint firstItem="40z-C1-eeb" firstAttribute="leading" secondItem="1SN-wt-0sZ" secondAttribute="leading" id="7MU-3b-xEQ"/>
                             <constraint firstItem="jdm-Pm-CoO" firstAttribute="centerY" secondItem="Pvi-Ji-KNK" secondAttribute="centerY" id="8S0-pX-w5N"/>
                             <constraint firstItem="jdm-Pm-CoO" firstAttribute="trailing" secondItem="F9H-Rn-fy7" secondAttribute="trailing" id="9Lg-IW-KiI"/>
                             <constraint firstItem="bxB-eu-T0P" firstAttribute="top" secondItem="37r-Ad-0Oh" secondAttribute="bottom" constant="22" id="DZ0-8C-0Cv"/>
@@ -120,6 +134,7 @@
                             <constraint firstItem="Pvi-Ji-KNK" firstAttribute="top" secondItem="OVZ-pr-xSi" secondAttribute="bottom" constant="27" id="Wt4-ZK-dex"/>
                             <constraint firstItem="1SN-wt-0sZ" firstAttribute="top" secondItem="aRl-Y6-5bE" secondAttribute="bottom" constant="30" id="YYa-S6-G8M"/>
                             <constraint firstItem="37r-Ad-0Oh" firstAttribute="top" secondItem="Pvi-Ji-KNK" secondAttribute="bottom" constant="37" id="YnF-Tg-dCC"/>
+                            <constraint firstItem="40z-C1-eeb" firstAttribute="top" secondItem="1SN-wt-0sZ" secondAttribute="bottom" constant="8" id="ZMt-x1-pjS"/>
                             <constraint firstItem="8eD-ad-bGz" firstAttribute="baseline" secondItem="Pvi-Ji-KNK" secondAttribute="firstBaseline" id="cuK-uH-byF"/>
                             <constraint firstItem="8eD-ad-bGz" firstAttribute="leading" secondItem="bAe-gT-oKZ" secondAttribute="leading" id="eIW-ia-rEx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1SN-wt-0sZ" secondAttribute="bottom" constant="76" id="hfZ-m5-JLW"/>
@@ -128,6 +143,7 @@
                             <constraint firstItem="F9H-Rn-fy7" firstAttribute="firstBaseline" secondItem="bAe-gT-oKZ" secondAttribute="baseline" id="q8q-Bl-p1W"/>
                             <constraint firstItem="aRl-Y6-5bE" firstAttribute="trailing" secondItem="37r-Ad-0Oh" secondAttribute="trailing" id="tCA-fv-RPQ"/>
                             <constraint firstItem="P8M-9Q-obn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="237" id="tm7-b7-RGa"/>
+                            <constraint firstItem="X4S-xS-ES3" firstAttribute="baseline" secondItem="40z-C1-eeb" secondAttribute="baseline" id="txc-fm-gJw"/>
                             <constraint firstItem="aw6-58-xuN" firstAttribute="leading" secondItem="37r-Ad-0Oh" secondAttribute="leading" id="uJ4-0D-Bnj"/>
                             <constraint firstItem="aRl-Y6-5bE" firstAttribute="top" secondItem="37r-Ad-0Oh" secondAttribute="bottom" constant="30.5" id="v0m-s0-qeq"/>
                             <constraint firstItem="P8M-9Q-obn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="129" id="v5I-e6-fGu"/>
@@ -142,6 +158,7 @@
                         <outlet property="labelCurrentCity" destination="37r-Ad-0Oh" id="CKs-bX-NkH"/>
                         <outlet property="labelLocationLat" destination="jdm-Pm-CoO" id="Ag4-eJ-3Wm"/>
                         <outlet property="labelLocationLong" destination="F9H-Rn-fy7" id="Hpt-wP-uSe"/>
+                        <outlet property="labelMonitoredRegions" destination="X4S-xS-ES3" id="fq1-cE-R6Z"/>
                         <outlet property="labelNearestLocation" destination="aRl-Y6-5bE" id="qRu-lK-Qvd"/>
                         <outlet property="viewMap" destination="1SN-wt-0sZ" id="xPt-50-N0I"/>
                     </connections>

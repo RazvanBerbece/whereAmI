@@ -30,6 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var labelCurrentCity: UILabel!
     @IBOutlet weak var labelNearestLocation: UILabel!
     @IBOutlet weak var headerIcon: UILabel!
+    @IBOutlet weak var labelMonitoredRegions: UILabel!
     
     @IBOutlet weak var viewMap: MKMapView!
     
@@ -46,8 +47,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
         /* Updating labels with current coordinates (12 decimal places) */
-        labelLocationLong.text = String(format: "%.12f", locValue.longitude)
-        labelLocationLat.text = String(format: "%.12f", locValue.latitude)
+        labelLocationLong.text = String(format: "%.15f", locValue.longitude)
+        labelLocationLat.text = String(format: "%.15f", locValue.latitude)
         
         /* Setting class variables for the Analysis class */
         self.locationAnalysisClass.setLat(lat: locValue.latitude)
@@ -88,20 +89,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /* User entered CLRegion Area */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("Entered a region.")
-        self.textToSpeechManager.toSpeech("You have \(region.identifier) in your proximity")
+        self.textToSpeechManager.toSpeech("You are near \(region.identifier)")
         self.labelNearestLocation.text = region.identifier
     }
     
     /* User exited CLRegion Area */
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("Exited a region.")
-        self.textToSpeechManager.toSpeech("You have left \(region.identifier) in your proximity")
+        self.textToSpeechManager.toSpeech("You have left \(region.identifier)")
         self.labelNearestLocation.text = "Calculating nearest point of interest ..."
     }
     
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("The monitored regions are: \(manager.monitoredRegions)")
-    }
+    /*
+     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+     print("The monitored regions are: \(manager.monitoredRegions)")
+     }
+     */
     
     /* Overlaying Methodology */
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -114,9 +117,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         return circleRenderer
     }
     
-    func addRadiusCircle(location: CLLocation, radius: Double){
+    func addRadiusCircle(location: CLLocation, radius: Double) { // With CLLocation
         self.viewMap.delegate = self
-        var circle = MKCircle(center: location.coordinate, radius: radius as CLLocationDistance)
+        let circle = MKCircle(center: location.coordinate, radius: radius as CLLocationDistance)
+        self.viewMap.addOverlay(circle)
+    }
+    
+    func addRadiusCircleGeo(location: GeofenceLocation, radius: Double) { // With GeofenceLocation
+        self.viewMap.delegate = self
+        let circle = MKCircle(center: location.getCoordinates(), radius: radius as CLLocationDistance)
         self.viewMap.addOverlay(circle)
     }
     /* ----- END OF OVERLAYING METHODS ----- */
@@ -130,6 +139,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             case true:
                 print("The data package seems to be empty.")
             case false:
+                /* Converting the JSON response to the required format through SwiftyJSON*/
                 let jsonString = String(data: data, encoding: .utf8)
                 let jsonData = jsonString!.data(using: .utf8)
                 if let json = try? JSON(data: jsonData!)
@@ -138,21 +148,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     var lats : [String] = []
                     var names : [String] = []
                     // If json is .Dictionary
-                    for (key, subJson):(String, JSON) in json {
+                    for (key, subJson) : (String, JSON) in json {
                         longs.append(String(describing: subJson["longitude"]))
                         lats.append(String(describing: subJson["latitude"]))
                         names.append(String(describing: subJson["name"]))
                     }
-                    for i in 0...longs.count-1 {
-                        
-                        if (Double(lats[i]) == nil || Double(longs[i]) == nil || names[i].isEmpty) {
-                            continue
+                    
+                    /* Current number of monitored locations (from API) */
+                    DispatchQueue.main.async {
+                        self.labelMonitoredRegions.text = String(describing: longs.count)
+                    }
+                    
+                    if (longs.count == 0) {
+                        print("No items fetched from API.")
+                    }
+                    else {
+                        for i in 0...longs.count-1 {
+                            
+                            if (Double(lats[i]) == nil || Double(longs[i]) == nil || names[i].isEmpty) {
+                                break
+                            }
+                            
+                            let geofenceObj = GeofenceLocation(coords: CLLocationCoordinate2D(latitude: Double(lats[i])!, longitude: Double(longs[i])!), name: names[i])
+                            print("Monitored from API : \(geofenceObj.getCoordinates().latitude) \n")
+                            self.geofenceManager.startMonitoring(location: geofenceObj, locationManager: self.locationManager)
+                            DispatchQueue.main.async {
+                                self.addRadiusCircleGeo(location: geofenceObj, radius: 25)
+                            }
                         }
-                        
-                        let geofenceObj = GeofenceLocation(coords: CLLocationCoordinate2D(latitude: Double(lats[i])!, longitude: Double(longs[i])!), name: names[i])
-                        self.geofenceManager.startMonitoring(location: geofenceObj, locationManager: self.locationManager)
-                        self.addRadiusCircle(location: CLLocation(latitude: Double(lats[i])!, longitude: Double(longs[i])!), radius: 1500)
-                        
                     }
                 }
             }
