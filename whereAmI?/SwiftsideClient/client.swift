@@ -10,7 +10,7 @@ import Foundation
 
 public class Client {
     
-    private let url : URL = URL(string: "http://192.168.0.39:3000/locations")!
+    private let url : URL = URL(string: "https://us-central1-whereami-275517.cloudfunctions.net/app/locations")!
     
     public func getCoordinatesFromAPI(completion: @escaping (_ data: Data) -> Void) {
         let task = URLSession.shared.dataTask(with: self.url) {

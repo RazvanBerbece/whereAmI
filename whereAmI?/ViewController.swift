@@ -147,7 +147,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     var longs : [String] = []
                     var lats : [String] = []
                     var names : [String] = []
-                    // If json is .Dictionary
+
                     for (key, subJson) : (String, JSON) in json {
                         longs.append(String(describing: subJson["longitude"]))
                         lats.append(String(describing: subJson["latitude"]))

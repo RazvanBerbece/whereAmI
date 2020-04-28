@@ -17,23 +17,11 @@
 		6F53618D24533B6700E5C2A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F53618B24533B6700E5C2A2 /* LaunchScreen.storyboard */; };
 		6F53619824533B6700E5C2A2 /* whereAmI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F53619724533B6700E5C2A2 /* whereAmI_Tests.swift */; };
 		6F5361A324533B6700E5C2A2 /* whereAmI_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5361A224533B6700E5C2A2 /* whereAmI_UITests.swift */; };
-		6F707DBC2457AC530089A2CC /* hosting.cHVibGlj.cache in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DAB2457AC530089A2CC /* hosting.cHVibGlj.cache */; };
-		6F707DBD2457AC530089A2CC /* .firebaserc in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DAC2457AC530089A2CC /* .firebaserc */; };
-		6F707DBE2457AC530089A2CC /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DAE2457AC530089A2CC /* styles.css */; };
-		6F707DBF2457AC530089A2CC /* locAPI.js in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB02457AC530089A2CC /* locAPI.js */; };
-		6F707DC02457AC530089A2CC /* cwdsrc.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB12457AC530089A2CC /* cwdsrc.html */; };
-		6F707DC12457AC530089A2CC /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB32457AC530089A2CC /* index.html */; };
-		6F707DC22457AC530089A2CC /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB42457AC530089A2CC /* styles.css */; };
-		6F707DC32457AC530089A2CC /* locAPI.js in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB62457AC530089A2CC /* locAPI.js */; };
-		6F707DC42457AC530089A2CC /* locations.js in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB72457AC530089A2CC /* locations.js */; };
-		6F707DC52457AC530089A2CC /* cwdsrc.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB82457AC530089A2CC /* cwdsrc.html */; };
-		6F707DC62457AC530089A2CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DB92457AC530089A2CC /* .gitignore */; };
-		6F707DC72457AC530089A2CC /* firebase.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DBA2457AC530089A2CC /* firebase.json */; };
-		6F707DC82457AC530089A2CC /* database.rules.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F707DBB2457AC530089A2CC /* database.rules.json */; };
 		6F707DCB2457ACB60089A2CC /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F707DCA2457ACB60089A2CC /* client.swift */; };
 		6F88F97D2455CB51005CC66C /* geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88F97C2455CB51005CC66C /* geofencing.swift */; };
 		6F88F9802455DC3C005CC66C /* texttospeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88F97F2455DC3C005CC66C /* texttospeech.swift */; };
 		6FDEEBC32453559B002302F0 /* locationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDEEBC22453559B002302F0 /* locationHandler.swift */; };
+		6FEE8E282458796D005EED9C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6FEE8E272458796D005EED9C /* .gitignore */; };
 		9E22E14ACD65F5C50F5F87ED /* Pods_whereAmI__whereAmI_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F750EB48B8DBF3A065D096A /* Pods_whereAmI__whereAmI_UITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,24 +61,12 @@
 		6F53619E24533B6700E5C2A2 /* whereAmI?UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "whereAmI?UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5361A224533B6700E5C2A2 /* whereAmI_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whereAmI_UITests.swift; sourceTree = "<group>"; };
 		6F5361A424533B6700E5C2A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F707DAB2457AC530089A2CC /* hosting.cHVibGlj.cache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hosting.cHVibGlj.cache; sourceTree = "<group>"; };
-		6F707DAC2457AC530089A2CC /* .firebaserc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .firebaserc; sourceTree = "<group>"; };
-		6F707DAE2457AC530089A2CC /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
-		6F707DB02457AC530089A2CC /* locAPI.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = locAPI.js; sourceTree = "<group>"; };
-		6F707DB12457AC530089A2CC /* cwdsrc.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cwdsrc.html; sourceTree = "<group>"; };
-		6F707DB32457AC530089A2CC /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		6F707DB42457AC530089A2CC /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
-		6F707DB62457AC530089A2CC /* locAPI.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = locAPI.js; sourceTree = "<group>"; };
-		6F707DB72457AC530089A2CC /* locations.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = locations.js; sourceTree = "<group>"; };
-		6F707DB82457AC530089A2CC /* cwdsrc.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cwdsrc.html; sourceTree = "<group>"; };
-		6F707DB92457AC530089A2CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		6F707DBA2457AC530089A2CC /* firebase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firebase.json; sourceTree = "<group>"; };
-		6F707DBB2457AC530089A2CC /* database.rules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = database.rules.json; sourceTree = "<group>"; };
 		6F707DCA2457ACB60089A2CC /* client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = client.swift; sourceTree = "<group>"; };
 		6F88F97C2455CB51005CC66C /* geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = geofencing.swift; sourceTree = "<group>"; };
 		6F88F97F2455DC3C005CC66C /* texttospeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = texttospeech.swift; sourceTree = "<group>"; };
 		6FBB45132B17C331F953AF8D /* Pods-whereAmI?.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whereAmI?.debug.xcconfig"; path = "Target Support Files/Pods-whereAmI?/Pods-whereAmI?.debug.xcconfig"; sourceTree = "<group>"; };
 		6FDEEBC22453559B002302F0 /* locationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationHandler.swift; sourceTree = "<group>"; };
+		6FEE8E272458796D005EED9C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		86B52766B7518E68F60F62FB /* Pods_whereAmI_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_whereAmI_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		877202C3EBC08452E31B273E /* Pods-whereAmI?-whereAmI?UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whereAmI?-whereAmI?UITests.debug.xcconfig"; path = "Target Support Files/Pods-whereAmI?-whereAmI?UITests/Pods-whereAmI?-whereAmI?UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7321B5F4AA06EDAE7EB6218 /* Pods-whereAmI?Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whereAmI?Tests.release.xcconfig"; path = "Target Support Files/Pods-whereAmI?Tests/Pods-whereAmI?Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +117,7 @@
 		6F53617424533B6600E5C2A2 = {
 			isa = PBXGroup;
 			children = (
+				6FEE8E272458796D005EED9C /* .gitignore */,
 				6F53617F24533B6600E5C2A2 /* whereAmI? */,
 				6F53619624533B6700E5C2A2 /* whereAmI?Tests */,
 				6F5361A124533B6700E5C2A2 /* whereAmI?UITests */,
@@ -164,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				6F707DC92457AC7A0089A2CC /* SwiftsideClient */,
-				6F707DA92457AC530089A2CC /* API */,
 				6F88F97E2455DC2C005CC66C /* src_tts */,
 				6F53618024533B6600E5C2A2 /* AppDelegate.swift */,
 				6F53618224533B6600E5C2A2 /* SceneDelegate.swift */,
@@ -203,66 +179,6 @@
 				6FDEEBC22453559B002302F0 /* locationHandler.swift */,
 			);
 			path = src_location;
-			sourceTree = "<group>";
-		};
-		6F707DA92457AC530089A2CC /* API */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DAA2457AC530089A2CC /* .firebase */,
-				6F707DAC2457AC530089A2CC /* .firebaserc */,
-				6F707DAD2457AC530089A2CC /* local */,
-				6F707DB22457AC530089A2CC /* public */,
-				6F707DB92457AC530089A2CC /* .gitignore */,
-				6F707DBA2457AC530089A2CC /* firebase.json */,
-				6F707DBB2457AC530089A2CC /* database.rules.json */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		6F707DAA2457AC530089A2CC /* .firebase */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DAB2457AC530089A2CC /* hosting.cHVibGlj.cache */,
-			);
-			path = .firebase;
-			sourceTree = "<group>";
-		};
-		6F707DAD2457AC530089A2CC /* local */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DAE2457AC530089A2CC /* styles.css */,
-				6F707DAF2457AC530089A2CC /* js */,
-				6F707DB12457AC530089A2CC /* cwdsrc.html */,
-			);
-			path = local;
-			sourceTree = "<group>";
-		};
-		6F707DAF2457AC530089A2CC /* js */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DB02457AC530089A2CC /* locAPI.js */,
-			);
-			path = js;
-			sourceTree = "<group>";
-		};
-		6F707DB22457AC530089A2CC /* public */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DB32457AC530089A2CC /* index.html */,
-				6F707DB42457AC530089A2CC /* styles.css */,
-				6F707DB52457AC530089A2CC /* js */,
-				6F707DB82457AC530089A2CC /* cwdsrc.html */,
-			);
-			path = public;
-			sourceTree = "<group>";
-		};
-		6F707DB52457AC530089A2CC /* js */ = {
-			isa = PBXGroup;
-			children = (
-				6F707DB62457AC530089A2CC /* locAPI.js */,
-				6F707DB72457AC530089A2CC /* locations.js */,
-			);
-			path = js;
 			sourceTree = "<group>";
 		};
 		6F707DC92457AC7A0089A2CC /* SwiftsideClient */ = {
@@ -411,19 +327,7 @@
 				6F53618D24533B6700E5C2A2 /* LaunchScreen.storyboard in Resources */,
 				6F53618A24533B6700E5C2A2 /* Assets.xcassets in Resources */,
 				6F53618824533B6600E5C2A2 /* Main.storyboard in Resources */,
-				6F707DC42457AC530089A2CC /* locations.js in Resources */,
-				6F707DC22457AC530089A2CC /* styles.css in Resources */,
-				6F707DC12457AC530089A2CC /* index.html in Resources */,
-				6F707DBE2457AC530089A2CC /* styles.css in Resources */,
-				6F707DC02457AC530089A2CC /* cwdsrc.html in Resources */,
-				6F707DC62457AC530089A2CC /* .gitignore in Resources */,
-				6F707DC82457AC530089A2CC /* database.rules.json in Resources */,
-				6F707DBC2457AC530089A2CC /* hosting.cHVibGlj.cache in Resources */,
-				6F707DBF2457AC530089A2CC /* locAPI.js in Resources */,
-				6F707DC72457AC530089A2CC /* firebase.json in Resources */,
-				6F707DC52457AC530089A2CC /* cwdsrc.html in Resources */,
-				6F707DBD2457AC530089A2CC /* .firebaserc in Resources */,
-				6F707DC32457AC530089A2CC /* locAPI.js in Resources */,
+				6FEE8E282458796D005EED9C /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
