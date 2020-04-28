@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FontAwesome_swift
+import SwiftyJSON
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -21,6 +22,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     private var geofenceManager = GeofencingManager()
     private var locationQueue = LocationList()
     private let textToSpeechManager = Speaker()
+    private let clientCallManager = Client()
     
     /* UIKit Components Variable Initialisation */
     @IBOutlet weak var labelLocationLong: UILabel!
@@ -121,6 +123,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     override func viewDidLoad() {
+        
+        self.clientCallManager.getCoordinatesFromAPI(completion: {
+            (data) in
+            switch data.isEmpty {
+            case true:
+                print("The data package seems to be empty.")
+            case false:
+                let jsonString = String(data: data, encoding: .utf8)
+                let jsonData = jsonString!.data(using: .utf8)
+                if let json = try? JSON(data: jsonData!)
+                {
+                    var longs : [String] = []
+                    var lats : [String] = []
+                    var names : [String] = []
+                    // If json is .Dictionary
+                    for (key, subJson):(String, JSON) in json {
+                        longs.append(String(describing: subJson["longitude"]))
+                        lats.append(String(describing: subJson["latitude"]))
+                        names.append(String(describing: subJson["name"]))
+                    }
+                    for i in 0...longs.count-1 {
+                        
+                        if (Double(lats[i]) == nil || Double(longs[i]) == nil || names[i].isEmpty) {
+                            continue
+                        }
+                        
+                        let geofenceObj = GeofenceLocation(coords: CLLocationCoordinate2D(latitude: Double(lats[i])!, longitude: Double(longs[i])!), name: names[i])
+                        self.geofenceManager.startMonitoring(location: geofenceObj, locationManager: self.locationManager)
+                        self.addRadiusCircle(location: CLLocation(latitude: Double(lats[i])!, longitude: Double(longs[i])!), radius: 1500)
+                        
+                    }
+                }
+            }
+        })
         
         super.viewDidLoad()
         self.textToSpeechManager.toSpeech("Welcome!")

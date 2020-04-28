@@ -1,0 +1,27 @@
+{
+  "name": "whereami",
+  "version": "1.0.0",
+  "description": "API and applicantion which displays and reads out loud different information about the location the user is at.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RazvanBerbece/whereAmI.git"
+  },
+  "author": "Antonio Berbece",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RazvanBerbece/whereAmI/issues"
+  },
+  "homepage": "https://github.com/RazvanBerbece/whereAmI#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "^3.6.1"
+  }
+}
