@@ -7,27 +7,23 @@
 //
 
 import Foundation
+import Alamofire
 
 public class Client {
     
     private let url : URL = URL(string: "https://us-central1-whereami-275517.cloudfunctions.net/app/locations")!
     
     public func getCoordinatesFromAPI(completion: @escaping (_ data: Data) -> Void) {
-        let task = URLSession.shared.dataTask(with: self.url) {
-            (data, response, error) in
-            
-            print("Starting request ...")
-            
-            if let error = error {
-                print("error = \(error)")
-            }
-            
-            if let data = data {
-                print("data = \(data)")
-                completion(data)
-            }
+        AF.request(self.url, method: .get)
+            .responseJSON {
+                (response) in
+                switch response.result {
+                case .success:
+                    completion(response.data!)
+                case .failure(let error):
+                    print(error)
+                }
         }
-        task.resume()
     }
     
 }

@@ -53,10 +53,10 @@ public class GeofenceLocation { /** Class which is going to be used for all geof
         self.radius = 0
     }
     
-    init(coords: CLLocationCoordinate2D, name: String) {
+    init(coords: CLLocationCoordinate2D, name: String, radius: Double) {
         self.coordinates = coords
         self.name = name
-        self.radius = 10 // Adjustable ?
+        self.radius = radius // Adjustable ?
     }
     
     public func getCoordinates() -> CLLocationCoordinate2D {

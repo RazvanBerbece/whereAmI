@@ -6,6 +6,7 @@ target 'whereAmI?' do
   use_frameworks!
   pod 'FontAwesome.swift'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'Alamofire', '~> 5.1'
 
   # Pods for whereAmI?
 

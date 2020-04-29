@@ -52,6 +52,7 @@ app.post('/locations', (req, res) => { // Saving a location in the local list an
     var long = new_location.longitude;
     var lat = new_location.latitude;
     var name = new_location.name;
+    var rad = new_location.radius;
 
     var ref = database.ref();
     var child = ref.child("locations");
@@ -59,7 +60,8 @@ app.post('/locations', (req, res) => { // Saving a location in the local list an
     child.push({
         name: name,
         longitude: long,
-        latitude: lat
+        latitude: lat,
+        radius: rad
     });
     
     locations.push(new_location);
@@ -81,6 +83,6 @@ app.get('/locations', (req, res) => { // Getting the list of all locations
   res.json(gotLocations);
 
 });
-/* -------------- Uploading to Firebase Functions ? -------------- */
+/* -------------- Uploading to Firebase Functions  -------------- */
 
 exports.app = functions.https.onRequest(app);
