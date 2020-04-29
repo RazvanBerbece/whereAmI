@@ -2,14 +2,30 @@
 Swift application which calculates the current user location, and using a TTS synthesizer, read out loud locations near the user. The client makes HTTP requests to get other locations from the integrated API build in NodeJS and Express. 
 
 # Frontend :
-- UIKit, Swift, HTML5, CSS
+- [Swift (UIKit)]
+- [HTML5]
+- [CSS]
+- [JS]
 
 # Backend :
-- NodeJS, Express, Firebase
+* [NodeJS]
+* [Express]
+* [Firebase]
 
-Also used :
-    + SwiftyJSON
-    + FontAwesome_swift
+## Also used :
+* SwiftyJSON
+* FontAwesome_swift
+* Alamofire
 
-The server is volatile at the moment, as it saves data per process (until server is closed). 
-The project will be moved to Firebase so as the data persists, through Cloud Functions.
+## API  :
+> https://us-central1-whereami-275517.cloudfunctions.net/app
+### Accepted calls :
+- GET (to get the list of all locations in the Firebase DB)
+- POST (with the location data as params)
+- / (just to check the connection)
+
+## The location input website can be found at :
+> https://whereami-275517.web.app
+
+
+Cheers !
