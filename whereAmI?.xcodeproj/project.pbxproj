@@ -69,7 +69,6 @@
 		6FBB45132B17C331F953AF8D /* Pods-whereAmI?.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whereAmI?.debug.xcconfig"; path = "Target Support Files/Pods-whereAmI?/Pods-whereAmI?.debug.xcconfig"; sourceTree = "<group>"; };
 		6FC5CF752458D0020002E5A5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6FC5CF772458D0080002E5A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		6FC5CF792458DA5E0002E5A5 /* locationSimulator.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = locationSimulator.gpx; sourceTree = "<group>"; };
 		6FDEEBC22453559B002302F0 /* locationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationHandler.swift; sourceTree = "<group>"; };
 		6FEE8E272458796D005EED9C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		86B52766B7518E68F60F62FB /* Pods_whereAmI_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_whereAmI_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +152,6 @@
 				6F53618224533B6600E5C2A2 /* SceneDelegate.swift */,
 				6F5361B024533BAB00E5C2A2 /* src_location */,
 				6F53618424533B6600E5C2A2 /* ViewController.swift */,
-				6FC5CF792458DA5E0002E5A5 /* locationSimulator.gpx */,
 				6F53618624533B6600E5C2A2 /* Main.storyboard */,
 				6F53618924533B6700E5C2A2 /* Assets.xcassets */,
 				6F53618B24533B6700E5C2A2 /* LaunchScreen.storyboard */,
@@ -652,6 +650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "RB.whereAmI-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -671,6 +670,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "RB.whereAmI-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

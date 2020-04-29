@@ -100,4 +100,36 @@ public class GeofencingManager { /** This manages the addition or processing of 
         locationManager.startMonitoring(for: fenceRegion)
     }
     
+    public func isDuplicateCheck(locationManager: CLLocationManager, locationToCheck: GeofenceLocation) -> Bool {
+        
+        for location in locationManager.monitoredRegions {
+            /* If the absolute differences of the coords are minimum, then there is a duplicate */
+            let latDiff = fabs((location as! CLCircularRegion).center.latitude - locationToCheck.getCoordinates().latitude)
+            let longDiff = fabs((location as! CLCircularRegion).center.longitude - locationToCheck.getCoordinates().longitude)
+            
+            if latDiff == 0 && longDiff == 0 {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    public func getClosestLocation(locarray: [GeofenceLocation], currentLocation: GeofenceLocation, completion: @escaping ((GeofenceLocation) -> Void)) {
+        
+        var minDistance : Double = 9999999.9
+        var closestRegion = GeofenceLocation()
+        
+        for location in locarray {
+            if (distanceToLocation(destinationGeo: location, currentLocationGeo: currentLocation) < minDistance) {
+                minDistance = distanceToLocation(destinationGeo: location, currentLocationGeo: currentLocation)
+                closestRegion = GeofenceLocation(coords: location.getCoordinates(), name: location.getName(), radius: location.getRadius())
+            }
+        }
+        print("CLOSEST AFTER --------> \(closestRegion.getName())")
+        print("COORDS \(closestRegion.getName()) ------> \(closestRegion.getCoordinates())")
+        
+        completion(closestRegion)
+    }
+    
 }
