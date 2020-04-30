@@ -1,10 +1,9 @@
 # whereAmI
-![Logo](/whereAmI?/appstore.png)
+<img alt="logo" src="/whereAmI?/appstore.png" width="75">
 Swift application which calculates the current user location, and using a TTS synthesizer, reads out loud locations near the user. The client makes HTTP requests to get other locations from the integrated API built in NodeJS and Express (in local).
 The API is uploaded to Firebase so it can be accessed by everyone, through either requests or through the website below.
 
-![in-App](/IMG_0203.PNG)
-
+<img alt="app" src="/IMG_0203.PNG" width="175">
 
 # Frontend :
 - [Swift (UIKit)]
