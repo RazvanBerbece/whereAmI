@@ -9,6 +9,13 @@
 import Foundation
 import Alamofire
 
+struct PostLocation: Encodable {
+    let latitude: String
+    let longitude: String
+    let name: String
+    let radius: String
+}
+
 public class Client {
     
     private let url : URL = URL(string: "https://us-central1-whereami-275517.cloudfunctions.net/app/locations")!
@@ -24,6 +31,23 @@ public class Client {
                     case .failure(let error):
                         print(error)
                     }
+            }
+        }
+    }
+    
+    public func postCoordinatesToAPI(location: GeofenceLocation, completion: @escaping (Bool) -> Void) {
+        let toBePosted = PostLocation(latitude: String(describing: location.getCoordinates().latitude), longitude: String(describing: location.getCoordinates().longitude), name: location.getName(), radius: String(describing: location.getRadius()))
+        DispatchQueue.main.async {
+            AF.request(self.url, method: .post, parameters: toBePosted, encoder: JSONParameterEncoder.default).response {
+                (response) in
+                switch response.result {
+                case .success:
+                    print(response)
+                    completion(true)
+                case .failure(let error):
+                    print(error)
+                    completion(false)
+                }
             }
         }
     }

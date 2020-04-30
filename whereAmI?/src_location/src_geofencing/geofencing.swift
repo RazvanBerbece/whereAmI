@@ -87,7 +87,6 @@ public class GeofenceLocation { /** Class which is going to be used for all geof
 public class GeofencingManager { /** This manages the addition or processing of the geofencing locations to the MapKit */
     
     public func addRegion(with location: GeofenceLocation) -> CLCircularRegion {
-        print("Creating region ...")
         let region = CLCircularRegion(center: location.getCoordinates(), radius: location.getRadius(), identifier: location.getName())
         region.notifyOnEntry = true
         region.notifyOnExit = true
@@ -96,7 +95,6 @@ public class GeofencingManager { /** This manages the addition or processing of 
     
     public func startMonitoring(location: GeofenceLocation, locationManager: CLLocationManager) {
         let fenceRegion = addRegion(with: location)
-        print("Monitoring region ...")
         locationManager.startMonitoring(for: fenceRegion)
     }
     
@@ -126,9 +124,6 @@ public class GeofencingManager { /** This manages the addition or processing of 
                 closestRegion = GeofenceLocation(coords: location.getCoordinates(), name: location.getName(), radius: location.getRadius())
             }
         }
-        print("CLOSEST AFTER --------> \(closestRegion.getName())")
-        print("COORDS \(closestRegion.getName()) ------> \(closestRegion.getCoordinates())")
-        
         completion(closestRegion)
     }
     

@@ -118,6 +118,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDu-z3-mbc">
+                                <rect key="frame" x="138" y="670" width="139" height="33"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="r2Q-Ui-ch5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Submit Location"/>
+                                <connections>
+                                    <action selector="pushCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7SH-zl-dyU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -136,6 +149,7 @@
                             <constraint firstItem="40z-C1-eeb" firstAttribute="top" secondItem="1SN-wt-0sZ" secondAttribute="bottom" constant="8" id="EhK-wi-ceA"/>
                             <constraint firstItem="P8M-9Q-obn" firstAttribute="trailing" secondItem="F9H-Rn-fy7" secondAttribute="trailing" id="F37-sn-Qoh"/>
                             <constraint firstItem="F9H-Rn-fy7" firstAttribute="top" secondItem="OVZ-pr-xSi" secondAttribute="top" id="FLr-mk-815"/>
+                            <constraint firstItem="eDu-z3-mbc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Izl-mv-gEf"/>
                             <constraint firstItem="jdm-Pm-CoO" firstAttribute="trailing" secondItem="F9H-Rn-fy7" secondAttribute="trailing" id="LEQ-ce-vzo"/>
                             <constraint firstItem="bAe-gT-oKZ" firstAttribute="leading" secondItem="OVZ-pr-xSi" secondAttribute="trailing" constant="26" id="M1n-hH-U3z"/>
                             <constraint firstItem="F9H-Rn-fy7" firstAttribute="bottom" secondItem="OVZ-pr-xSi" secondAttribute="bottom" id="MAB-W0-IFX"/>
@@ -144,6 +158,7 @@
                             <constraint firstItem="OVZ-pr-xSi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="RhM-uT-8eq"/>
                             <constraint firstItem="40z-C1-eeb" firstAttribute="leading" secondItem="1SN-wt-0sZ" secondAttribute="leading" id="SAC-fK-GE7"/>
                             <constraint firstItem="bAe-gT-oKZ" firstAttribute="top" secondItem="aw6-58-xuN" secondAttribute="bottom" constant="39" id="TPA-Wi-2Nw"/>
+                            <constraint firstItem="40z-C1-eeb" firstAttribute="top" secondItem="eDu-z3-mbc" secondAttribute="bottom" constant="21" id="UCn-5v-a4k"/>
                             <constraint firstItem="8eD-ad-bGz" firstAttribute="leading" secondItem="bAe-gT-oKZ" secondAttribute="leading" id="Ud7-P4-Kxh"/>
                             <constraint firstItem="37r-Ad-0Oh" firstAttribute="leading" secondItem="aw6-58-xuN" secondAttribute="leading" id="Xxr-qE-84B"/>
                             <constraint firstItem="jdm-Pm-CoO" firstAttribute="centerY" secondItem="Pvi-Ji-KNK" secondAttribute="centerY" id="Zca-dM-qbp"/>
@@ -158,6 +173,7 @@
                             <constraint firstItem="aw6-58-xuN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ocm-Yd-bFW"/>
                             <constraint firstItem="X4S-xS-ES3" firstAttribute="leading" secondItem="40z-C1-eeb" secondAttribute="trailing" constant="8" id="pCR-YQ-7T2"/>
                             <constraint firstItem="bxB-eu-T0P" firstAttribute="top" secondItem="37r-Ad-0Oh" secondAttribute="bottom" constant="23" id="rFi-9k-URE"/>
+                            <constraint firstItem="eDu-z3-mbc" firstAttribute="leading" secondItem="8eD-ad-bGz" secondAttribute="leading" id="tHJ-DX-kFX"/>
                             <constraint firstItem="Pvi-Ji-KNK" firstAttribute="leading" secondItem="OVZ-pr-xSi" secondAttribute="leading" id="ujb-qc-wGC"/>
                             <constraint firstItem="37r-Ad-0Oh" firstAttribute="top" secondItem="Pvi-Ji-KNK" secondAttribute="bottom" constant="37" id="x1j-rL-Hyz"/>
                             <constraint firstItem="1SN-wt-0sZ" firstAttribute="leading" secondItem="Pvi-Ji-KNK" secondAttribute="leading" id="ylr-JX-A6j"/>

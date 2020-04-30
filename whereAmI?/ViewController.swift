@@ -34,6 +34,53 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     @IBOutlet weak var viewMap: MKMapView!
     
+    /* Sends the current location to the API through a POST req */
+    @IBAction func pushCurrentLocation(_ sender: UIButton) { print("-------> STARTING POST REQUEST")
+        
+        guard let currentLocationCoords : CLLocationCoordinate2D = self.currentLocation.getCoordinates() else { return }
+        
+        var locationToBePushed = GeofenceLocation()
+        
+        var name : String = ""
+        var radius : Double = -1.0
+        
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Add Location to Database", message: "Please Input the Required Data", preferredStyle: .alert)
+        
+        //2. Add the text fields. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Name of location"
+        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Radius (in m)"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak alert] (_) in
+            let textField1 = alert?.textFields![0]
+            let textField2 = alert?.textFields![1]
+            name = textField1!.text!
+            radius = Double(textField2!.text!)!
+            locationToBePushed = GeofenceLocation(coords: currentLocationCoords, name: name, radius: radius)
+            
+            print("----------> GOT DATA : \(locationToBePushed.getName()) &&&& \(locationToBePushed.getRadius())")
+            
+            self.clientCallManager.postCoordinatesToAPI(location: locationToBePushed, completion: {
+                (result) in
+                switch result {
+                case true:
+                    print("Added location to database!")
+                case false:
+                    print("Post request failed.")
+                }
+            })
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
     /* Current location / testing objects as GeofenceLocation */
     private var currentLocation = GeofenceLocation()
     private var lastCheckedRegionName : String = ""
@@ -98,8 +145,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                             closestRegion = GeofenceLocation(coords: location.getCoordinates(), name: location.getName(), radius: location.getRadius())
                         }
                     }
-                    
-                    print("CLOSEST BEFORE --------> \(closestRegion.getName())")
                     
                     /* Setting variables using the resulted location */
                     if (closestRegion.getName() != "uninitialised") {

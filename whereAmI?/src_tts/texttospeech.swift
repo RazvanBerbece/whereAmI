@@ -25,6 +25,6 @@ class Speaker: NSObject {
 
 extension Speaker: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("Finished TTS toSpeech().")
+        //
     }
 }
