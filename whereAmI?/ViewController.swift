@@ -271,11 +271,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                             print("Monitored from API : \(geofenceObj.getCoordinates().latitude) \n")
                             
                             /* Monitoring and adding overlay on map */
-                            if !self.geofenceManager.isDuplicateCheck(locationManager: self.locationManager, locationToCheck: geofenceObj) {
-                                self.geofenceManager.startMonitoring(location: geofenceObj, locationManager: self.locationManager)
-                                self.addRadiusCircleGeo(location: geofenceObj, radius: geofenceObj.getRadius())
-                                self.addOverlayDesc(mapView: self.viewMap, text: geofenceObj.getName(), atCoordinates: geofenceObj.getCoordinates())
-                            }
+                            self.geofenceManager.startMonitoring(location: geofenceObj, locationManager: self.locationManager)
+                            self.addRadiusCircleGeo(location: geofenceObj, radius: geofenceObj.getRadius())
+                            self.addOverlayDesc(mapView: self.viewMap, text: geofenceObj.getName(), atCoordinates: geofenceObj.getCoordinates())
                         }
                     }
                 }
