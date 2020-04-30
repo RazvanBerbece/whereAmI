@@ -54,17 +54,23 @@ app.post('/locations', (req, res) => { // Saving a location in the local list an
     var name = new_location.name;
     var rad = new_location.radius;
 
-    var ref = database.ref();
-    var child = ref.child("locations");
+    if (isFloat(long) == true && isFloat(lat) == true && isFloat(rad) == true && name.length != 0 && name !== null) {
 
-    child.push({
-        name: name,
-        longitude: long,
-        latitude: lat,
-        radius: rad
-    });
+          console.log(new_location);
+          
+          var ref = database.ref();
+          var child = ref.child("locations");
+
+          child.push({
+            name: name,
+            longitude: long,
+            latitude: lat,
+            radius: rad
+          });
     
-    locations.push(new_location);
+      locations.push(new_location);
+    }
+    else { console.log("Input seems to be wrong. Check it and try again."); }
 
 });
 
@@ -83,6 +89,24 @@ app.get('/locations', (req, res) => { // Getting the list of all locations
   res.json(gotLocations);
 
 });
+
+/* -------------- JS Helper Functions -------------- */
+
+/* 
+  Checks if the number can be parsed as float,
+  For input sanity check purposes.
+*/
+function isFloat(input) {
+  
+  var result = parseFloat(input);
+
+  if ((isNaN(result)) == false) {
+    return true;
+  }
+  
+  return false;
+}
+
 /* -------------- Uploading to Firebase Functions  -------------- */
 
 exports.app = functions.https.onRequest(app);

@@ -1,5 +1,6 @@
 # whereAmI
-Swift application which calculates the current user location, and using a TTS synthesizer, read out loud locations near the user. The client makes HTTP requests to get other locations from the integrated API build in NodeJS and Express. 
+Swift application which calculates the current user location, and using a TTS synthesizer, reads out loud locations near the user. The client makes HTTP requests to get other locations from the integrated API built in NodeJS and Express (in local).
+The API is uploaded to Firebase so it can be accessed by everyone, through either requests or through the website below.
 
 # Frontend :
 - [Swift (UIKit)]
@@ -26,6 +27,7 @@ Swift application which calculates the current user location, and using a TTS sy
 
 ## The location input website can be found at :
 > https://whereami-275517.web.app
+
 
 
 Cheers !
